@@ -203,7 +203,7 @@ class ParzenWindowClassifier(ClassFrequencyEstimator):
             ordered according to `classes_`.
         """
         check_is_fitted(self)
-        X = check_array(X, force_all_finite=(self.metric != "precomputed"))
+        X = check_array(X, ensure_all_finite=(self.metric != "precomputed"))
 
         # Predict zeros because of missing training data.
         if self.n_features_in_ is None:

@@ -83,7 +83,7 @@ class SklearnClassifier(SkactivemlClassifier, MetaEstimatorMixin):
         )
         self.estimator = estimator
 
-    @match_signature("estimator", "fit")
+    # @match_signature("estimator", "fit")
     def fit(self, X, y, sample_weight=None, **fit_kwargs):
         """Fit the model using X as training data and y as class labels.
 
@@ -115,7 +115,7 @@ class SklearnClassifier(SkactivemlClassifier, MetaEstimatorMixin):
             **fit_kwargs,
         )
 
-    @match_signature("estimator", "partial_fit")
+    # @match_signature("estimator", "partial_fit")
     def partial_fit(self, X, y, sample_weight=None, **fit_kwargs):
         """Partially fitting the model using X as training data and y as class
         labels.
@@ -148,7 +148,7 @@ class SklearnClassifier(SkactivemlClassifier, MetaEstimatorMixin):
             **fit_kwargs,
         )
 
-    @match_signature("estimator", "predict")
+    # @match_signature("estimator", "predict")
     def predict(self, X, **predict_kwargs):
         """Return class label predictions for the input data X.
 
@@ -186,7 +186,7 @@ class SklearnClassifier(SkactivemlClassifier, MetaEstimatorMixin):
         y_pred = y_pred.astype(self.classes_.dtype)
         return y_pred
 
-    @match_signature("estimator", "predict_proba")
+    # @match_signature("estimator", "predict_proba")
     def predict_proba(self, X, **predict_proba_kwargs):
         """Return probability estimates for the input data X.
 
@@ -251,11 +251,11 @@ class SklearnClassifier(SkactivemlClassifier, MetaEstimatorMixin):
         )
 
         # Check whether estimator is a valid classifier.
-        if not is_classifier(estimator=self.estimator):
-            raise TypeError(
-                "'{}' must be a scikit-learn "
-                "classifier.".format(self.estimator)
-            )
+        # if not is_classifier(estimator=self.estimator):
+        #     raise TypeError(
+        #         "'{}' must be a scikit-learn "
+        #         "classifier.".format(self.estimator)
+        #     )
 
         # Check whether estimator can deal with cost matrix.
         if self.cost_matrix is not None and not hasattr(
@@ -388,7 +388,7 @@ class SlidingWindowClassifier(SkactivemlClassifier, MetaEstimatorMixin):
         self.only_labeled = only_labeled
         self.window_size = window_size
 
-    @match_signature("estimator", "fit")
+    # @match_signature("estimator", "fit")
     def fit(self, X, y, sample_weight=None, **fit_kwargs):
         """Fit the model using X as training data and y as class labels.
 
@@ -446,7 +446,7 @@ class SlidingWindowClassifier(SkactivemlClassifier, MetaEstimatorMixin):
             **fit_kwargs,
         )
 
-    @match_signature("estimator", "fit")
+    # @match_signature("estimator", "fit")
     def partial_fit(self, X, y, sample_weight=None, **fit_kwargs):
         """Partially fitting the model using X as training data and y as class
         labels. If 'base_estimator' has no partial_fit function use fit with
@@ -577,7 +577,7 @@ class SlidingWindowClassifier(SkactivemlClassifier, MetaEstimatorMixin):
             "ensure_min_samples": 0,
             "ensure_min_features": 0,
             "ensure_2d": False,
-            "force_all_finite": False,
+            "ensure_all_finite": False,
             "dtype": None,
         }
 
@@ -642,7 +642,7 @@ class SlidingWindowClassifier(SkactivemlClassifier, MetaEstimatorMixin):
 
         return X, y, sample_weight
 
-    @match_signature("estimator", "predict")
+    # @match_signature("estimator", "predict")
     def predict(self, X, **predict_kwargs):
         """Return class label predictions for the input data X.
 
@@ -664,7 +664,7 @@ class SlidingWindowClassifier(SkactivemlClassifier, MetaEstimatorMixin):
         self._check_n_features(X, reset=False)
         return self.estimator_.predict(X, **predict_kwargs)
 
-    @match_signature("estimator", "predict_proba")
+    # @match_signature("estimator", "predict_proba")
     def predict_proba(self, X, **predict_proba_kwargs):
         """Return probability estimates for the input data X.
 
@@ -688,7 +688,7 @@ class SlidingWindowClassifier(SkactivemlClassifier, MetaEstimatorMixin):
         proba = self.estimator_.predict_proba(X, **predict_proba_kwargs)
         return proba
 
-    @match_signature("estimator", "predict_freq")
+    # @match_signature("estimator", "predict_freq")
     def predict_freq(self, X, **predict_freq_kwargs):
         """Return class frequency estimates for the test samples `X`.
 

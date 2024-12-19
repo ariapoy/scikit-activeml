@@ -152,7 +152,7 @@ class PoolQueryStrategy(QueryStrategy):
 
         # Check labels
         y = check_array(
-            y, ensure_2d=False, force_all_finite="allow-nan", dtype=None
+            y, ensure_2d=False, ensure_all_finite="allow-nan", dtype=None
         )
         check_consistent_length(X, y)
 
@@ -594,7 +594,7 @@ class MultiAnnotatorPoolQueryStrategy(PoolQueryStrategy):
             X, y, candidates, batch_size, return_utilities, reset, check_X_dict
         )
 
-        check_array(y, ensure_2d=True, force_all_finite="allow-nan")
+        check_array(y, ensure_2d=True, ensure_all_finite="allow-nan")
         unlabeled_pairs = is_unlabeled(y, missing_label=self.missing_label_)
 
         if annotators is not None:
@@ -1148,7 +1148,7 @@ class SkactivemlClassifier(BaseEstimator, ClassifierMixin, ABC):
                 "ensure_min_samples": 0,
                 "ensure_min_features": 0,
                 "ensure_2d": False,
-                "force_all_finite": False,
+                "ensure_all_finite": False,
                 "dtype": None,
             }
 
@@ -1457,7 +1457,7 @@ class SkactivemlRegressor(BaseEstimator, RegressorMixin, ABC):
                 "ensure_min_samples": 0,
                 "ensure_min_features": 0,
                 "ensure_2d": False,
-                "force_all_finite": False,
+                "ensure_all_finite": False,
                 "dtype": None,
             }
 
